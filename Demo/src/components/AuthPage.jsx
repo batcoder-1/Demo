@@ -3,33 +3,69 @@ import { Link } from "react-router";
 
 function AuthPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div className="bg-white shadow-md rounded-lg border border-gray-200 p-6">
+    <div
+      className="min-h-screen flex items-center justify-center px-4"
+      style={{ backgroundColor: "#EDE8F5" }} // Page background
+    >
+      <div className="max-w-md w-full">
+        {/* Card */}
+        <div
+          className="bg-white shadow-xl rounded-2xl p-8" // Removed border class
+        >
+          {/* Logo / Title */}
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            <div
+              className="inline-flex items-center justify-center w-16 h-16 text-white font-bold text-xl rounded-full shadow-md mb-4"
+              style={{ backgroundColor: "#3D52A0" }}
+            >
+              CE
+            </div>
+            <h2
+              className="text-3xl font-extrabold"
+              style={{ color: "#3D52A0" }}
+            >
               CivicEye Portal
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="mt-2" style={{ color: "#8697C4" }}>
               Select your role to continue
             </p>
           </div>
 
-          <div className="space-y-3">
+          {/* Buttons */}
+          <div className="mt-8 space-y-4">
             <Link
               to="/auth/user"
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md bg-blue-600 text-white font-medium text-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+              className="block w-full py-3 px-4 text-center rounded-lg text-white font-semibold shadow-md transition-all duration-200"
+              style={{ backgroundColor: "#7091E6" }}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.backgroundColor = "#3D52A0")
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.backgroundColor = "#7091E6")
+              }
             >
               Citizen Login
             </Link>
 
             <Link
               to="/auth/admin"
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md bg-green-600 text-white font-medium text-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200"
+              className="block w-full py-3 px-4 text-center rounded-lg text-white font-semibold shadow-md transition-all duration-200"
+              style={{ backgroundColor: "#3D52A0" }}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.backgroundColor = "#7091E6")
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.backgroundColor = "#3D52A0")
+              }
             >
               Admin Login
             </Link>
           </div>
+
+          {/* Footer */}
+          <p className="mt-6 text-xs text-center" style={{ color: "#8697C4" }}>
+            © {new Date().getFullYear()} CivicEye Portal. All rights reserved.
+          </p>
         </div>
       </div>
     </div>
