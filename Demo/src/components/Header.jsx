@@ -1,7 +1,12 @@
 import React from "react";
 import { Menu } from "lucide-react";
-
+import Logout from "./Logoutbtn";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { login } from "../store/AuthSlice";
+import Login from "./Login";
 function Header() {
+  const isLoggedIn = useSelector((state) => state.Auth.isLoggedIn);
   return (
     <header
       className="text-white shadow-md border-b"
@@ -26,44 +31,32 @@ function Header() {
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-6 font-medium">
-          <a
-            href="#home"
-            className="transition-colors duration-200"
-            style={{ color: "#EDE8F5" }}
-          >
+          <Link to="/home" className="transition-colors duration-200" style={{ color: "#EDE8F5" }}>
             Home
-          </a>
-          <a
-            href="#features"
+          </Link>
+          <Link
+            to="#features"
             className="transition-colors duration-200"
             style={{ color: "#EDE8F5" }}
           >
             Features
-          </a>
-          <a
-            href="#about"
+          </Link>
+          <Link
+            to="#about"
             className="transition-colors duration-200"
             style={{ color: "#EDE8F5" }}
           >
             About
-          </a>
-          <button
-            className="px-4 py-2 rounded-lg font-semibold shadow-md transition duration-200"
-            style={{
-              backgroundColor: "#EDE8F5",
-              color: "#3D52A0",
-            }}
-            onMouseOver={(e) =>
-              (e.currentTarget.style.backgroundColor = "#ADBBDA")
-            }
-            onMouseOut={(e) =>
-              (e.currentTarget.style.backgroundColor = "#EDE8F5")
-            }
+          </Link>
+          <Link
+            to="#contact"
+            className="transition-colors duration-200"
+            style={{ color: "#EDE8F5" }}
           >
-            Login
-          </button>
+            Contact
+          </Link>
+         
         </nav>
-
         {/* Mobile Menu Icon */}
         <button
           className="md:hidden p-2 rounded-lg transition duration-200"
@@ -71,6 +64,8 @@ function Header() {
         >
           <Menu size={24} />
         </button>
+        {!isLoggedIn && <Link to="/auth/user/login" className="transition-colors duration-200" style={{ color: "#EDE8F5" }}>Login</Link>}
+        {isLoggedIn && <Logout />}
       </div>
     </header>
   );

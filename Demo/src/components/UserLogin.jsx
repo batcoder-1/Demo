@@ -1,6 +1,11 @@
 import React from "react";
+import Signup from "./Signup";
 function UserLogin() {
-  return <div>UserLogin</div>;
+  return (
+    <div>
+      <Signup />
+    </div>
+  );
 }
 
 export default UserLogin;
