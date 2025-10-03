@@ -9,8 +9,10 @@ export default function Login() {
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const handleLogin = async (data) => {
     setError("");
+    setLoading(true);
     try {
       const session = await authService.login(data);
       if (session) {
@@ -23,8 +25,23 @@ export default function Login() {
     } catch (error) {
       setError(error.message);
     }
+    setLoading(false);
   };
-
+if(loading){
+  return (
+    <>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="mx-auto w-full max-w-md bg-white rounded-xl p-8 shadow-md">
+        <div className="mb-4 flex flex-col items-center text-center space-y-3">
+          <h2 className="text-2xl font-bold leading-tight">
+            Signing you in...
+          </h2>
+        </div>
+      </div>
+    </div>
+    </>
+  )
+}
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="mx-auto w-full max-w-md bg-white rounded-xl p-8 shadow-md">

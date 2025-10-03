@@ -7,6 +7,7 @@ import { login } from '../store/AuthSlice';
 export default function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -56,6 +57,7 @@ export default function Signup() {
   }, [passwordValue, confirmPasswordValue, trigger]);
 
   const createAccount = async (data) => {
+    setLoading(true);
   setError('');
   try {
     // 1. Create account in Appwrite Auth
@@ -71,9 +73,24 @@ export default function Signup() {
   } catch (err) {
     setError(err?.message || 'Something went wrong');
   }
+  setLoading(false);
 };
 
-
+if(loading){
+  return (
+    <>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="mx-auto w-full max-w-md bg-white rounded-xl p-8 shadow-md">
+        <div className="mb-4 flex flex-col items-center text-center space-y-3">
+          <h2 className="text-2xl font-bold leading-tight">
+            Creating your account...
+          </h2>
+        </div>
+      </div>
+    </div>
+    </>
+  )
+}
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="mx-auto w-full max-w-md bg-white rounded-xl p-8 shadow-md">
